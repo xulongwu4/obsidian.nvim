@@ -13,7 +13,7 @@ local command_lookups = {
   ObsidianBacklinks = "obsidian.commands.backlinks",
   ObsidianSearch = "obsidian.commands.search",
   ObsidianTags = "obsidian.commands.tags",
-  ObsidianAliases = "obsidian.commands.aliases",
+  ObsidianTitles = "obsidian.commands.titles",
   ObsidianTemplate = "obsidian.commands.template",
   ObsidianNewFromTemplate = "obsidian.commands.new_from_template",
   ObsidianQuickSwitch = "obsidian.commands.quick_switch",
@@ -150,7 +150,7 @@ M.register("ObsidianBacklinks", { opts = { nargs = 0, desc = "Collect backlinks"
 
 M.register("ObsidianTags", { opts = { nargs = "*", range = true, desc = "Find tags" } })
 
-M.register("ObsidianAliases", { opts = { nargs = "*", range = true, desc = "Find aliases" } })
+M.register("ObsidianTitles", { opts = { nargs = 0, desc = "Collect titles and aliases" } })
 
 M.register("ObsidianSearch", { opts = { nargs = "?", desc = "Search vault" } })
 
