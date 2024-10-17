@@ -32,10 +32,6 @@ local function map_title_to_notes(notes)
     end
   end
 
-  for title, notes_share_title in pairs(title_to_notes) do
-    title_to_notes[title] = util.tbl_unique(notes_share_title)
-  end
-
   return title_to_notes
 end
 
