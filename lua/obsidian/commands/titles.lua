@@ -17,6 +17,7 @@ end
 ---
 ---@return table<string, obsidian.Note[]>
 local function map_title_to_notes(notes)
+  ---@type table<string, obsidian.Note[]>
   local title_to_notes = {}
   for _, note in ipairs(notes) do
     local title = note.title
@@ -45,8 +46,18 @@ return function(client)
 
   client:find_notes_async("", function(notes)
     local title_to_notes = map_title_to_notes(notes)
+    ---@type obsidian.PickerEntry[]
+    local items = {}
+    for title, notes_with_title in pairs(title_to_notes) do
+      table.insert(items, {
+        value = title,
+        display = title,
+        ordinal = title,
+        filename = tostring(notes_with_title[1].path),
+      })
+    end
     vim.schedule(function()
-      picker:pick(vim.tbl_keys(title_to_notes), {
+      picker:pick(items, {
         prompt_title = "Titles",
         callback = function(title)
           local selected_notes = title_to_notes[title]
@@ -57,8 +68,8 @@ return function(client)
             vim.schedule(function()
               picker:pick(entries, {
                 prompt_title = title,
-                callback = function(value)
-                  util.open_buffer(value.path)
+                callback = function(note)
+                  util.open_buffer(note.path)
                 end,
               })
             end)
