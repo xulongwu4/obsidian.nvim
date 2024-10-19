@@ -56,7 +56,7 @@ _Keep in mind this plugin is not meant to replace Obsidian, but to complement it
 
 - `:ObsidianTags [TAG ...]` for getting a picker list of all occurrences of the given tags.
 
-- `:ObsidianTitles` for getting a picker list of titles and aliases of all notes in the vault.
+- `:ObsidianTitles` for getting a picker list of all titles and aliases of notes in the vault.
 
 - `:ObsidianToday [OFFSET]` to open/create a new daily note. This command also takes an optional offset in days, e.g. use `:ObsidianToday -1` to go to yesterday's note. Unlike `:ObsidianYesterday` and `:ObsidianTomorrow` this command does not differentiate between weekdays and weekends.
 
