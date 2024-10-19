@@ -15,7 +15,7 @@ local function convert_notes_to_picker_entries(notes)
       entries[#entries + 1] = {
         value = note,
         display = title,
-        ordinal = note:display_name(),
+        ordinal = note:display_name() .. " " .. title,
         filename = tostring(note.path),
       }
     end
@@ -25,7 +25,7 @@ local function convert_notes_to_picker_entries(notes)
         entries[#entries + 1] = {
           value = note,
           display = alias,
-          ordinal = note:display_name(),
+          ordinal = note:display_name() .. " " .. alias,
           filename = tostring(note.path),
         }
       end
@@ -47,8 +47,10 @@ return function(client)
     vim.schedule(function()
       picker:pick(convert_notes_to_picker_entries(notes), {
         prompt_title = "Titles",
-        callback = function(note)
-          util.open_buffer(note.path)
+        callback = function(...)
+          for _, note in ipairs { ... } do
+            util.open_buffer(note.path)
+          end
         end,
         allow_multiple = true,
       })
